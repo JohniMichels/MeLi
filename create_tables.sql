@@ -46,6 +46,8 @@ CREATE TABLE Order (
     customer_id UUID NOT NULL,
     item_id UUID NOT NULL,
     order_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    price DECIMAL(10, 2) NOT NULL, -- Como o preço do item muda de acordo com uma das perguntas, é necessário armazenar o preço práticado no momento da compra
+    quantity INT NOT NULL, -- Um dos pontos sugerem que mesmo sem carrinho a compra pode ter mais de uma unidade do mesmo item
     FOREIGN KEY (customer_id) REFERENCES Customer(id),
     FOREIGN KEY (item_id) REFERENCES Item(id)
 );
