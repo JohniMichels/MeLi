@@ -15,7 +15,7 @@ CREATE TABLE Customer (
 -- Category: É a entidade onde se encontra a descrição de cada categoria com seu respectivo caminho. Cada item possui uma categoria associada a ele.
 CREATE TABLE Category (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(60) NOT NULL, --
+    name VARCHAR(60) NOT NULL UNIQUE, --
     path TEXT NOT NULL
 );
 
