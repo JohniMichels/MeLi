@@ -25,9 +25,9 @@ CREATE TABLE ItemCDC (
     price DECIMAL(10, 2) NOT NULL, -- Usando DECIMAL para representar valores monetários, limite de 10 dígitos sendo 2 deles decimais. Isso significa que o valor máximo que podemos representar é 100 milhões
     status VARCHAR(10) NOT NULL CHECK (status IN ('ACTIVE', 'INACTIVE', 'CANCELED')),
     cancel_date TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES Category(id),
-    FOREIGN KEY (seller_id) REFERENCES Customer(id)
-    FOREIGN KEY (id) REFERENCES Item(id)
+    FOREIGN KEY (category_id) REFERENCES Categories(id),
+    FOREIGN KEY (seller_id) REFERENCES Categories(id),
+    FOREIGN KEY (id) REFERENCES Items(id)
 );
 
 CREATE FUNCTION NotifyItemChanged()
@@ -45,6 +45,6 @@ END;
 
 CREATE TRIGGER ItemCDCTrigger
 AFTER INSERT OR UPDATE OR DELETE
-ON Item
+ON Items
 FOR EACH ROW
 EXECUTE FUNCTION NotifyItemChanged();
